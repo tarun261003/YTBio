@@ -21,7 +21,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         # Check for superuser credentials
-        if username == user and password == passw:
+        if username == 'admin' and password == 847726:
             session['logged_in'] = True
             return redirect(url_for('admin'))
         else:
