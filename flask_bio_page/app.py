@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from models import init_db, add_link, get_links, delete_link
+from flask_cors import CORS
 from config import user,passw
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
-
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 # Initialize the database
 init_db()
 
@@ -21,7 +22,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         # Check for superuser credentials
-        if username == user and password == passw:
+        if username == 'admin' and password == 847726:
             session['logged_in'] = True
             return redirect(url_for('admin'))
         else:
