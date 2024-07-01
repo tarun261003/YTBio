@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Manage Links</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Admin - Manage Links</h1>
+        <form method="post" action="/admin">
+            <label for="category">Category:</label>
+            <input type="text" name="category" id="category" required>
+            <br>
+            <label for="link">Link:</label>
+            <input type="text" name="link" id="link" required>
+            <br>
+            <button type="submit" name="add_link">Add Link</button>
+        </form>
+        <h2>All Links</h2>
+        <ul>
+        {% for link in links %}
+            <li>
+                <strong>{{ link[1] }}:</strong> 
+                <a href="{{ link[2] }}" target="_blank">{{ link[2] }}</a>
+                <form method="post" action="/admin" style="display:inline;">
+                    <input type="hidden" name="link_id" value="{{ link[0] }}">
+                    <button type="submit" name="delete_link">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+        <a href="{{ url_for('index') }}">Go Back</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</body>
+</html>

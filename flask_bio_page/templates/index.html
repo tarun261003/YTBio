@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bio Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Bio Page</h1>
+        <form method="get" action="/">
+            <input type="text" name="search" placeholder="Search links..." value="{{ search_query }}">
+            <button type="submit">Search</button>
+        </form>
+
+        <h2>All Links</h2>
+        {% for link in links %}
+            <h3>{{ link[1] }}</h3>
+            <p><a href="{{ link[2] }}" target="_blank">{{ link[2] }}</a></p>
+        {% endfor %}
+        
+        
+    </div>
+</body>
+</html>
